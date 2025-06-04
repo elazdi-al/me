@@ -1,119 +1,163 @@
 type Project = {
-  name: string
-  description: string
-  link: string
-  video: string
-  id: string
-}
+	name: string;
+	description: string;
+	link: string;
+	video?: string;
+	image?: string;
+	id: string;
+};
 
 type WorkExperience = {
-  company: string
-  title: string
-  start: string
-  end: string
-  link: string
-  id: string
-}
+	company: string;
+	title: string;
+	start: string;
+	end: string;
+	link: string;
+	id: string;
+};
 
 type BlogPost = {
-  title: string
-  description: string
-  link: string
-  uid: string
-}
+	title: string;
+	description: string;
+	link: string;
+	uid: string;
+};
 
 type SocialLink = {
-  label: string
-  link: string
-}
+	label: string;
+	link: string;
+};
+
+type CourseNote = {
+	semester: string;
+	name: string;
+	description: string;
+	link: string;
+	pdfUrl: string;
+	gradientColors: [string, string, string, string];
+	id: string;
+};
 
 export const PROJECTS: Project[] = [
-  {
-    name: 'Motion Primitives Pro',
-    description:
-      'Advanced components and templates to craft beautiful websites.',
-    link: 'https://pro.motion-primitives.com/',
-    video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
-    id: 'project1',
-  },
-  {
-    name: 'Motion Primitives',
-    description: 'UI kit to make beautiful, animated interfaces.',
-    link: 'https://motion-primitives.com/',
-    video:
-      'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
-    id: 'project2',
-  },
-]
+	{
+		name: "Ask Ed",
+		description:
+			"Ed Discussion, faster, better, and more efficient then ever. Coming soon.",
+		link: "",
+		image: "/ask-ed.png",
+		id: "project1",
+	},
+
+];
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
-  {
-    company: 'Reglazed Studio',
-    title: 'CEO',
-    start: '2024',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work1',
-  },
-  {
-    company: 'Freelance',
-    title: 'Design Engineer',
-    start: '2022',
-    end: '2024',
-    link: 'https://ibelick.com',
-    id: 'work2',
-  },
-  {
-    company: 'Freelance',
-    title: 'Front-end Developer',
-    start: '2017',
-    end: 'Present',
-    link: 'https://ibelick.com',
-    id: 'work3',
-  },
-]
+	{
+		company: "Reglazed Studio",
+		title: "CEO",
+		start: "2024",
+		end: "Present",
+		link: "https://ibelick.com",
+		id: "work1",
+	},
+	{
+		company: "Freelance",
+		title: "Design Engineer",
+		start: "2022",
+		end: "2024",
+		link: "https://ibelick.com",
+		id: "work2",
+	},
+	{
+		company: "Freelance",
+		title: "Front-end Developer",
+		start: "2017",
+		end: "Present",
+		link: "https://ibelick.com",
+		id: "work3",
+	},
+];
 
 export const BLOG_POSTS: BlogPost[] = [
-  {
-    title: 'Exploring the Intersection of Design, AI, and Design Engineering',
-    description: 'How AI is changing the way we design',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-1',
-  },
-  {
-    title: 'Why I left my job to start my own company',
-    description:
-      'A deep dive into my decision to leave my job and start my own company',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-2',
-  },
-  {
-    title: 'What I learned from my first year of freelancing',
-    description:
-      'A look back at my first year of freelancing and what I learned',
-    link: '/blog/exploring-the-intersection-of-design-ai-and-design-engineering',
-    uid: 'blog-3',
-  },
-]
+	{
+		title: "Nothing particular for now.",
+		description: "",
+		link: "/",
+		uid: "blog-1",
+	},
+	
+];
 
 export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    label: 'Github',
-    link: 'https://github.com/ibelick',
-  },
-  {
-    label: 'Twitter',
-    link: 'https://twitter.com/ibelick',
-  },
-  {
-    label: 'LinkedIn',
-    link: 'https://www.linkedin.com/in/ibelick',
-  },
-  {
-    label: 'Instagram',
-    link: 'https://www.instagram.com/ibelick',
-  },
-]
+	{
+		label: "Github",
+		link: "https://github.com/elazdi-al",
+	},
+	{
+		label: "X",
+		link: "https://x.com/elazdi_al",
+	},
+];
 
-export const EMAIL = 'your@email.com'
+export const EMAIL = "ali.elazdi@epfl.ch";
+
+export const COURSE_NOTES: CourseNote[] = [
+	// BA4 Semester
+	{
+		semester: "BA4",
+		name: "Computer Systems",
+		description: "",
+		link: "https://elazdi-al.github.io/compsys/",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys-cheatsheet/main/cheatsheet.pdf",
+		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
+		id: "course1",
+	},
+	{
+		semester: "BA4",
+		name: "Algorithm I: Cheatsheet",
+		description: "",
+		link: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
+		gradientColors: ["#4facfe", "#00f2fe", "#43e97b", "#38f9d7"],
+		id: "course2",
+	},
+
+	// BA3 Semester
+	{
+		semester: "BA3",
+		name: "Analysis III: Distribution Theory",
+		description: "",
+		link: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
+		gradientColors: ["#fa709a", "#fee140", "#ffecd2", "#fcb69f"],
+		id: "course3",
+	},
+	{
+		semester: "BA3",
+		name: "Computer Architecture",
+		description: "",
+		link: "https://elazdi-al.github.io/comparch/",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
+		gradientColors: ["#a8edea", "#fed6e3", "#d299c2", "#fef9d7"],
+		id: "course4",
+	},
+	{
+		semester: "BA3",
+		name: "Analysis III: Cheatsheet",
+		description: "",
+		link: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
+		gradientColors: ["#ff9a9e", "#fecfef", "#fecfef", "#ffeaa7"],
+		id: "course5",
+	},
+
+	// BA2 Semester
+	{
+		semester: "BA2",
+		name: "Fundamentals of Digital Systems",
+		description: "",
+		link: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
+		gradientColors: ["#e0c3fc", "#9bb5ff", "#a8edea", "#fed6e3"],
+		id: "course6",
+	},
+];
