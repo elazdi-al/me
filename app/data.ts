@@ -104,7 +104,25 @@ export const COURSE_NOTES: CourseNote[] = [
 	// BA4 Semester
 	{
 		semester: "BA4",
+		name: "Introduction to Machine Learning - Summary",
+		description: "",
+		link: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
+		pdfUrl: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
+		gradientColors: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4"],
+		id: "course0",
+	},
+	{
+		semester: "BA4",
 		name: "Computer Systems",
+		description: "",
+		link: "https://elazdi-al.github.io/compsys/",
+		pdfUrl: "https://github.com/elazdi-al/compsys/blob/main/compsys.pdf",
+		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
+		id: "course1",
+	},
+	{
+		semester: "BA4",
+		name: "Computer Systems - Midterm CheatSheet",
 		description: "",
 		link: "https://elazdi-al.github.io/compsys/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys-cheatsheet/main/cheatsheet.pdf",
