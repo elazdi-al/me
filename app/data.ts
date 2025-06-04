@@ -102,12 +102,12 @@ export const EMAIL = "ali.elazdi@epfl.ch";
 
 export const COURSE_NOTES: CourseNote[] = [
 	// BA4 Semester
-	{
+	{	
 		semester: "BA4",
 		name: "IML - Summary",
 		description: "",
-		link: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
-		pdfUrl: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
+		link: "https://raw.githubusercontent.com/elazdi-al/ML-Summary/main/main.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/ML-Summary/main/main.pdf",
 		gradientColors: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4"],
 		id: "course0",
 	},
@@ -116,7 +116,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		name: "Computer Systems",
 		description: "",
 		link: "https://elazdi-al.github.io/compsys/",
-		pdfUrl: "https://github.com/elazdi-al/compsys/blob/main/compsys.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys/main/compsys.pdf",
 		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
 		id: "course1",
 	},
