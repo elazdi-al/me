@@ -104,7 +104,7 @@ export const COURSE_NOTES: CourseNote[] = [
 	// BA4 Semester
 	{
 		semester: "BA4",
-		name: "Introduction to Machine Learning - Summary",
+		name: "IML - Summary",
 		description: "",
 		link: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
 		pdfUrl: "https://github.com/elazdi-al/ML-Summary/blob/main/main.pdf",
@@ -127,7 +127,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://elazdi-al.github.io/compsys/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys-cheatsheet/main/cheatsheet.pdf",
 		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
-		id: "course1",
+		id: "course2",
 	},
 	{
 		semester: "BA4",
@@ -136,7 +136,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
 		gradientColors: ["#4facfe", "#00f2fe", "#43e97b", "#38f9d7"],
-		id: "course2",
+				id: "course3",
 	},
 
 	// BA3 Semester
@@ -147,7 +147,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
 		gradientColors: ["#fa709a", "#fee140", "#ffecd2", "#fcb69f"],
-		id: "course3",
+		id: "course4",
 	},
 	{
 		semester: "BA3",
@@ -156,7 +156,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://elazdi-al.github.io/comparch/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
 		gradientColors: ["#a8edea", "#fed6e3", "#d299c2", "#fef9d7"],
-		id: "course4",
+		id: "course5",
 	},
 	{
 		semester: "BA3",
@@ -165,7 +165,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
 		gradientColors: ["#ff9a9e", "#fecfef", "#fecfef", "#ffeaa7"],
-		id: "course5",
+		id: "course6",
 	},
 
 	// BA2 Semester
@@ -176,6 +176,6 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
 		gradientColors: ["#e0c3fc", "#9bb5ff", "#a8edea", "#fed6e3"],
-		id: "course6",
+		id: "course7",
 	},
 ];
