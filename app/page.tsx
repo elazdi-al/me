@@ -2,6 +2,7 @@
 import { motion } from 'motion/react'
 import { Magnetic } from '@/components/ui/magnetic'
 import { ContentGrid } from '@/components/content-grid'
+import { CommandMenu } from '@/components/ui/command-menu'
 import {
   PROJECTS,
   COURSE_NOTES,
@@ -64,83 +65,88 @@ function MagneticSocialLink({
 
 export default function Personal() {
   return (
-    <motion.main
-      className="space-y-24"
-      variants={VARIANTS_CONTAINER}
-      initial="hidden"
-      animate="visible"
-    >
-      <ContentGrid
-        title="Selected Projects"
-        items={PROJECTS}
-        variants={VARIANTS_SECTION}
-        enablePreview={false}
-        transition={TRANSITION_SECTION}
-      />
-
-      <ContentGrid
-        title="Course Notes"
-        items={COURSE_NOTES}
-        variants={VARIANTS_SECTION}
-        enablePreview={false}
-        transition={TRANSITION_SECTION}
-      />
-
-    {/*  <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
+    <>
+      <motion.main
+        className="space-y-24"
+        variants={VARIANTS_CONTAINER}
+        initial="hidden"
+        animate="visible"
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-2xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
+        <ContentGrid
+          title="Selected Projects"
+          items={PROJECTS}
+          variants={VARIANTS_SECTION}
+          enablePreview={false}
+          transition={TRANSITION_SECTION}
+        />
+
+        <ContentGrid
+          title="Course Notes"
+          items={COURSE_NOTES}
+          variants={VARIANTS_SECTION}
+          enablePreview={false}
+          transition={TRANSITION_SECTION}
+        />
+
+      {/*  <motion.section
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-3 text-lg font-medium">Blog</h3>
+          <div className="flex flex-col space-y-0">
+            <AnimatedBackground
+              enableHover
+              className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+              transition={{
+                type: 'spring',
+                bounce: 0,
+                duration: 0.2,
+              }}
+            >
+              {BLOG_POSTS.map((post) => (
+                <Link
+                  key={post.uid}
+                  className="-mx-3 rounded-xl px-3 py-3"
+                  href={post.link}
+                  data-id={post.uid}
+                >
+                  <div className="flex flex-col space-y-1">
+                    <h4 className="font-normal dark:text-zinc-100">
+                      {post.title}
+                    </h4>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      {post.description}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </AnimatedBackground>
+          </div>
+        </motion.section> */}
+
+        <motion.section
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-5 text-lg font-medium">Connect</h3>
+          <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+            Feel free to contact me at{' '}
+            <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
+              {EMAIL}
+            </a>
+          </p>
+          <div className="flex items-center justify-start space-x-3">
+            {SOCIAL_LINKS.map((link) => (
+              <MagneticSocialLink key={link.label} link={link.link}>
+                {link.label}
+              </MagneticSocialLink>
             ))}
-          </AnimatedBackground>
-        </div>
-      </motion.section> */}
+          </div>
+        </motion.section>
+      </motion.main>
 
-      <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
-        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
-          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-          </a>
-        </p>
-        <div className="flex items-center justify-start space-x-3">
-          {SOCIAL_LINKS.map((link) => (
-            <MagneticSocialLink key={link.label} link={link.link}>
-              {link.label}
-            </MagneticSocialLink>
-          ))}
-        </div>
-      </motion.section>
-    </motion.main>
+      {/* Command Menu */}
+      <CommandMenu />
+    </>
   )
 }
