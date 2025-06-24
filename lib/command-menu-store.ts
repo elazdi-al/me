@@ -5,9 +5,13 @@ interface CommandMenuState {
   // Core state
   isOpen: boolean
   inputValue: string
-  selectedCourses: string[]
+  selectedCourse: string | null
   aiSuggestion: string
   isTyping: boolean
+  
+  // Loading state
+  isLoadingResponse: boolean
+  loadingStage: string
   
   // Computed values
   courses: string[]
@@ -17,13 +21,16 @@ interface CommandMenuState {
   closeMenu: () => void
   toggleMenu: () => void
   setInputValue: (value: string) => void
-  addCourse: (course: string) => void
-  removeCourse: (course: string) => void
-  removeLastCourse: () => void
-  clearAllCourses: () => void
+  setCourse: (course: string) => void
+  clearCourse: () => void
   acceptAiSuggestion: () => void
   rejectAiSuggestion: () => void
   generateAiSuggestion: (query: string) => void
+  
+  // Loading actions
+  setLoadingStage: (stage: string) => void
+  setIsLoadingResponse: (loading: boolean) => void
+  
   reset: () => void
 }
 
@@ -86,9 +93,13 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
     // Initial state
     isOpen: false,
     inputValue: '',
-    selectedCourses: [],
+    selectedCourse: null,
     aiSuggestion: '',
     isTyping: false,
+    
+    // Loading state
+    isLoadingResponse: false,
+    loadingStage: '',
     
     // Computed values
     courses,
@@ -116,28 +127,20 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
       return newState
     }),
     
-    addCourse: (course: string) => set(state => {
+    setCourse: (course: string) => set(state => {
       // Remove the @ and any text after it from the input when selecting a course
       const atIndex = state.inputValue.lastIndexOf('@')
       const newInputValue = atIndex !== -1 ? state.inputValue.slice(0, atIndex) : state.inputValue
       
       return {
-        selectedCourses: [...state.selectedCourses, course],
+        selectedCourse: course,
         inputValue: newInputValue,
         aiSuggestion: '',
         isTyping: false
       }
     }),
     
-    removeCourse: (courseToRemove: string) => set(state => ({
-      selectedCourses: state.selectedCourses.filter(course => course !== courseToRemove)
-    })),
-    
-    removeLastCourse: () => set(state => ({
-      selectedCourses: state.selectedCourses.slice(0, -1)
-    })),
-    
-    clearAllCourses: () => set({ selectedCourses: [] }),
+    clearCourse: () => set({ selectedCourse: null }),
     
     acceptAiSuggestion: () => set(state => {
       if (!state.aiSuggestion) return state
@@ -150,7 +153,7 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
       
       return {
         inputValue: beforeAt,
-        selectedCourses: [...state.selectedCourses, state.aiSuggestion],
+        selectedCourse: state.aiSuggestion,
         aiSuggestion: '',
         isTyping: false
       }
@@ -162,7 +165,11 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
     }),
     
     generateAiSuggestion: (query: string) => set(state => {
-      // Only generate suggestions for @ queries
+      // Only generate suggestions for @ queries if no course is selected
+      if (state.selectedCourse) {
+        return { aiSuggestion: '', isTyping: false }
+      }
+      
       const atIndex = query.lastIndexOf('@')
       if (atIndex === -1) {
         return { aiSuggestion: '', isTyping: false }
@@ -180,12 +187,22 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
         isTyping: false
       }
     }),
+
+    // Loading actions
+    setLoadingStage: (stage: string) => set({ loadingStage: stage }),
     
+    setIsLoadingResponse: (loading: boolean) => set({ 
+      isLoadingResponse: loading,
+      loadingStage: loading ? get().loadingStage : ''
+    }),
+
     reset: () => set({
       inputValue: '',
-      selectedCourses: [],
+      selectedCourse: null,
       aiSuggestion: '',
-      isTyping: false
+      isTyping: false,
+      isLoadingResponse: false,
+      loadingStage: ''
     })
   }
 }) 

@@ -108,7 +108,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://raw.githubusercontent.com/elazdi-al/ML-Summary/main/main.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/ML-Summary/main/main.pdf",
-		gradientColors: ["#FF6B6B", "#4ECDC4", "#45B7D1", "#96CEB4"],
+		gradientColors: ["#667eea", "#764ba2", "#667eea", "#a8d8ea"],
 		id: "course0",
 	},
 	{
@@ -117,7 +117,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://elazdi-al.github.io/compsys/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys/main/compsys.pdf",
-		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
+		gradientColors: ["#667eea", "#764ba2", "#6fa8dc", "#9fc5e8"],
 		id: "course1",
 	},
 	{
@@ -126,17 +126,35 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://elazdi-al.github.io/compsys/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys-cheatsheet/main/cheatsheet.pdf",
-		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
+		gradientColors: ["#a8e6cf", "#88d8c0", "#78c2ad", "#68ac98"],
 		id: "course2",
 	},
+		{
+			semester: "BA4",
+			name: "Computer Systems - Final CheatSheet",
+			description: "",
+			link: "https://elazdi-al.github.io/compsys/",
+			pdfUrl: "https://raw.githubusercontent.com/elazdi-al/compsys-cheatsheet-final/blob/main/cheatsheet.pdf",
+			gradientColors: ["#ffd3a5", "#fd9853", "#ee9ca7", "#ffdde1"],
+			id: "course3",
+		},
 	{
 		semester: "BA4",
-		name: "Algorithm I: Cheatsheet",
+		name: "Algorithm I: Midterm Cheatsheet",
 		description: "",
 		link: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/main/algorithms.pdf",
 		gradientColors: ["#4facfe", "#00f2fe", "#43e97b", "#38f9d7"],
-				id: "course3",
+		id: "course4",
+	},
+	{
+		semester: "BA4",
+		name: "Algorithm I: Final Cheatsheet",
+		description: "",
+		link: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/blob/cheatsheet-final/algorithms.pdf",
+		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/algorithms-cheatsheet/blob/cheatsheet-final/algorithms.pdf",
+		gradientColors: ["#ee5a24", "#feca57", "#ff9ff3", "#54a0ff"],
+		id: "course5",
 	},
 
 	// BA3 Semester
@@ -147,7 +165,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		link: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/DistributionTheory/main/main.pdf",
 		gradientColors: ["#fa709a", "#fee140", "#ffecd2", "#fcb69f"],
-		id: "course4",
+		id: "course6",	
 	},
 	{
 		semester: "BA3",
@@ -155,8 +173,8 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://elazdi-al.github.io/comparch/",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
-		gradientColors: ["#a8edea", "#fed6e3", "#d299c2", "#fef9d7"],
-		id: "course5",
+		gradientColors: ["#5f27cd", "#00d2d3", "#ff9ff3", "#341f97"],
+		id: "course7",
 	},
 	{
 		semester: "BA3",
@@ -164,8 +182,8 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/CheatSheetAnalyseIII/main/cheatsheet.pdf",
-		gradientColors: ["#ff9a9e", "#fecfef", "#fecfef", "#ffeaa7"],
-		id: "course6",
+		gradientColors: ["#fa7671", "#ffa8a5", "#ffc3a0", "#f9e9df"],
+		id: "course8",
 	},
 
 	// BA2 Semester
@@ -175,7 +193,7 @@ export const COURSE_NOTES: CourseNote[] = [
 		description: "",
 		link: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
 		pdfUrl: "https://raw.githubusercontent.com/elazdi-al/FDS/main/modified_fds.pdf",
-		gradientColors: ["#e0c3fc", "#9bb5ff", "#a8edea", "#fed6e3"],
-		id: "course7",
+		gradientColors: ["#667eea", "#764ba2", "#f093fb", "#f5576c"],
+		id: "course9",
 	},
 ];
