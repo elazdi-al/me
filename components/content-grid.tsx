@@ -10,6 +10,17 @@ import {
   MorphingDialogContainer,
 } from '@/components/ui/morphing-dialog'
 
+// Clean fade-in animation for individual items
+const ITEM_VARIANTS = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+}
+
+const ITEM_TRANSITION = {
+  duration: 0.35,
+  ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
+}
+
 type ContentItem = {
   semester?: string;
   name: string;
@@ -263,6 +274,18 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
       }, {} as Record<string, ContentItem[]>)
     : null;
 
+  // Container variants for staggered children
+  const gridContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.06,
+        delayChildren: 0.1,
+      },
+    },
+  }
+
   return (
     <motion.section
       variants={variants}
@@ -275,16 +298,36 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
         <div className="space-y-8">
           {Object.entries(groupedItems)
             .sort(([a], [b]) => b.localeCompare(a)) // Sort semesters DESC (BA4, BA3, BA2)
-            .map(([semester, semesterItems]) => (
-              <div key={semester} className="space-y-4">
+            .map(([semester, semesterItems], semesterIndex) => (
+              <motion.div 
+                key={semester} 
+                className="space-y-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: semesterIndex * 0.08,
+                  ease: [0.25, 0.1, 0.25, 1]
+                }}
+              >
                 <div className="flex items-center gap-3">
                   <h4 className="text-base font-medium text-zinc-700 dark:text-zinc-300">{semester}</h4>
-                  <div className="flex-1 h-px bg-gradient-to-r from-zinc-200 to-transparent dark:from-zinc-700"></div>
+                  <div className="flex-1 h-px bg-gradient-to-r from-zinc-200 to-transparent dark:from-zinc-700" />
                 </div>
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <motion.div 
+                  className="grid grid-cols-1 gap-6 sm:grid-cols-2"
+                  variants={gridContainerVariants}
+                  initial="hidden"
+                  animate="visible"
+                >
                   {semesterItems.map((item) => (
-                    <div key={item.id} className="space-y-2">
-                      <div className="relative rounded-2xl bg-zinc-50/40  ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                    <motion.div 
+                      key={item.id} 
+                      className="space-y-2"
+                      variants={ITEM_VARIANTS}
+                      transition={ITEM_TRANSITION}
+                    >
+                      <div className="relative rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                         {item.video ? (
                           <ProjectVideo src={item.video} enablePreview={enablePreview} />
                         ) : item.image ? (
@@ -304,9 +347,10 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                             className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                             href={item.link}
                             target="_blank"
+                            rel="noreferrer"
                           >
                             {item.name}
-                            <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                            <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full" />
                           </a>
                           {item.semester && (
                             <span className="bg-zinc-100 dark:bg-zinc-800 rounded-full px-2 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
@@ -320,18 +364,28 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                           </p>
                         )}
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             ))}
         </div>
       ) : (
         // Render regular grid for non-course notes
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <motion.div 
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2"
+          variants={gridContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {items.map((item) => (
-            <div key={item.id} className="space-y-2">
-              <div className="relative rounded-2xl bg-zinc-50/40  ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+            <motion.div 
+              key={item.id} 
+              className="space-y-2"
+              variants={ITEM_VARIANTS}
+              transition={ITEM_TRANSITION}
+            >
+              <div className="relative rounded-2xl bg-zinc-50/40 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
                 {item.video ? (
                   <ProjectVideo src={item.video} enablePreview={enablePreview} />
                 ) : item.image ? (
@@ -351,9 +405,10 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                     className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
                     href={item.link}
                     target="_blank"
+                    rel="noreferrer"
                   >
                     {item.name}
-                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full"></span>
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full" />
                   </a>
                   {item.semester && (
                     <span className="bg-zinc-100 dark:bg-zinc-800 rounded-full px-2 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-700">
@@ -367,9 +422,9 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                   </p>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       )}
     </motion.section>
   )
