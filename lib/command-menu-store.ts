@@ -111,7 +111,7 @@ export const useCommandMenuStore = create<CommandMenuState>((set, get) => {
     
     toggleMenu: () => set(state => ({ isOpen: !state.isOpen })),
     
-    setInputValue: (value: string) => set(state => {
+    setInputValue: (value: string) => set(() => {
       // Clear AI suggestion when typing
       const newState: Partial<CommandMenuState> = { 
         inputValue: value,

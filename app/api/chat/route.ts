@@ -79,9 +79,10 @@ The PDF is provided as a file attachment. Please analyze it to answer the user's
             mimeType: 'application/pdf',
         });
         
-        apiMessages[firstUserMessageIndex] = {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (apiMessages as any)[firstUserMessageIndex] = {
           ...firstUserMessage,
-          content: content as any,
+          content,
         }
       }
     }
