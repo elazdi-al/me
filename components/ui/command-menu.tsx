@@ -131,7 +131,6 @@ export function CommandMenu() {
     closeMenu,
     toggleMenu,
     setInputValue,
-    setCourse,
     clearCourse,
     acceptAiSuggestion,
     rejectAiSuggestion,
@@ -232,6 +231,9 @@ export function CommandMenu() {
       setCurrentStage('')
     }
   }
+
+  // Suppress unused variable warning - handleSearch is ready for future use
+  void handleSearch
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
