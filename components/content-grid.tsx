@@ -16,7 +16,7 @@ const ITEM_VARIANTS = {
   visible: { opacity: 1 },
 }
 
-const ITEM_TRANSITION = {
+const ITEM_TRANSITION: Transition = {
   duration: 0.35,
   ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
 }
@@ -24,11 +24,10 @@ const ITEM_TRANSITION = {
 type ContentItem = {
   semester?: string;
   name: string;
-  description: string;
+  description?: string;
   link: string;
   video?: string;
   image?: string;
-  pdfUrl?: string;
   gradientColors?: [string, string, string, string];
   id: string;
 }
@@ -160,98 +159,43 @@ function ProjectImage({ src, alt, enablePreview = true }: ProjectImageProps) {
   )
 }
 
-type PdfPreviewProps = {
-  pdfUrl: string
+type GradientTileProps = {
+  href: string
   title: string
-  gradientColors?: [string, string, string, string]
-  enablePreview?: boolean
+  gradientColors: [string, string, string, string]
 }
 
-function PdfPreview({ pdfUrl, title, gradientColors, enablePreview = true }: PdfPreviewProps) {
-  const gradientStyle = gradientColors 
-    ? {
-        background: `radial-gradient(circle at 20% 50%, ${gradientColors[0]} 0%, transparent 50%), 
-                     radial-gradient(circle at 80% 20%, ${gradientColors[1]} 0%, transparent 50%), 
-                     radial-gradient(circle at 40% 80%, ${gradientColors[2]} 0%, transparent 50%), 
-                     radial-gradient(circle at 60% 30%, ${gradientColors[3]} 0%, transparent 50%), 
-                     linear-gradient(135deg, ${gradientColors[0]}20, ${gradientColors[3]}20)`,
-        filter: 'blur(40px)',
-      }
-    : {};
-
-  const content = (
-    <div 
-      className="aspect-video w-full rounded-2xl relative overflow-hidden"
-      style={gradientColors ? {} : { backgroundColor: '#f3f4f6' }}
-    >
-      {gradientColors ? (
-        <>
-          <div 
-            className="absolute inset-0 opacity-60"
-            style={gradientStyle}
-          />
-          <div 
-            className="absolute inset-0 opacity-40"
-            style={{
-              background: `linear-gradient(45deg, ${gradientColors[0]}40, ${gradientColors[1]}40, ${gradientColors[2]}40, ${gradientColors[3]}40)`,
-              filter: 'blur(20px)',
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
-        </>
-      ) : null}
-    </div>
-  );
-
-  if (!enablePreview) {
-    return (
-      <a
-        href={pdfUrl}
-        download={`${title}.pdf`}
-        className="block cursor-pointer hover:opacity-80 transition-opacity"
-        title={`Download ${title}`}
-      >
-        {content}
-      </a>
-    );
-  }
-
+function GradientTile({ href, title, gradientColors }: GradientTileProps) {
   return (
-    <MorphingDialog
-      transition={{
-        type: 'spring',
-        bounce: 0,
-        duration: 0.3,
-      }}
+    <a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={title}
+      className="block cursor-pointer transition-opacity hover:opacity-80"
     >
-      <MorphingDialogTrigger>
-        <div className={enablePreview ? "cursor-zoom-in" : ""}>
-          {content}
-        </div>
-      </MorphingDialogTrigger>
-      <MorphingDialogContainer>
-        <MorphingDialogContent className="relative rounded-2xl bg-zinc-50 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 w-[90vw] h-[90vh] max-w-6xl">
-          <iframe
-            src={`${pdfUrl}#toolbar=1&navpanes=0&scrollbar=1&page=1&view=FitH`}
-            className="w-full h-full rounded-2xl"
-            title={title}
-          />
-        </MorphingDialogContent>
-        <MorphingDialogClose
-          className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1"
-          variants={{
-            initial: { opacity: 0 },
-            animate: {
-              opacity: 1,
-              transition: { delay: 0.3, duration: 0.1 },
-            },
-            exit: { opacity: 0, transition: { duration: 0 } },
+      <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+        <div
+          className="absolute inset-0 opacity-60"
+          style={{
+            background: `radial-gradient(circle at 20% 50%, ${gradientColors[0]} 0%, transparent 50%),
+                     radial-gradient(circle at 80% 20%, ${gradientColors[1]} 0%, transparent 50%),
+                     radial-gradient(circle at 40% 80%, ${gradientColors[2]} 0%, transparent 50%),
+                     radial-gradient(circle at 60% 30%, ${gradientColors[3]} 0%, transparent 50%),
+                     linear-gradient(135deg, ${gradientColors[0]}20, ${gradientColors[3]}20)`,
+            filter: 'blur(40px)',
           }}
-        >
-          <XIcon className="h-5 w-5 text-zinc-500" />
-        </MorphingDialogClose>
-      </MorphingDialogContainer>
-    </MorphingDialog>
+        />
+        <div
+          className="absolute inset-0 opacity-40"
+          style={{
+            background: `linear-gradient(45deg, ${gradientColors[0]}40, ${gradientColors[1]}40, ${gradientColors[2]}40, ${gradientColors[3]}40)`,
+            filter: 'blur(20px)',
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+      </div>
+    </a>
   )
 }
 
@@ -332,12 +276,11 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                           <ProjectVideo src={item.video} enablePreview={enablePreview} />
                         ) : item.image ? (
                           <ProjectImage src={item.image} alt={item.name} enablePreview={enablePreview} />
-                        ) : item.pdfUrl ? (
-                          <PdfPreview 
-                            pdfUrl={item.pdfUrl} 
-                            title={item.name} 
+                        ) : item.gradientColors ? (
+                          <GradientTile
+                            href={item.link}
+                            title={item.name}
                             gradientColors={item.gradientColors}
-                            enablePreview={enablePreview}
                           />
                         ) : null}
                       </div>
@@ -390,12 +333,11 @@ export function ContentGrid({ title, items, enablePreview = true, variants, tran
                   <ProjectVideo src={item.video} enablePreview={enablePreview} />
                 ) : item.image ? (
                   <ProjectImage src={item.image} alt={item.name} enablePreview={enablePreview} />
-                ) : item.pdfUrl ? (
-                  <PdfPreview 
-                    pdfUrl={item.pdfUrl} 
-                    title={item.name} 
+                ) : item.gradientColors ? (
+                  <GradientTile
+                    href={item.link}
+                    title={item.name}
                     gradientColors={item.gradientColors}
-                    enablePreview={enablePreview}
                   />
                 ) : null}
               </div>

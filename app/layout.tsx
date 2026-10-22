@@ -12,9 +12,9 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: 'Ali El Azdi - Personal Website',
+  title: 'Ali El Azdi',
   description:
-    'my website.',
+    'MSc student in Cyber Security at EPFL and ETH Zurich. Experience, projects and course notes.',
 }
 
 const geist = Geist({
