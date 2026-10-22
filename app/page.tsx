@@ -1,9 +1,11 @@
 'use client'
 import { motion, type Transition } from 'motion/react'
 import { Magnetic } from '@/components/ui/magnetic'
+import { Spotlight } from '@/components/ui/spotlight'
 import { ContentGrid } from '@/components/content-grid'
 import {
   PROJECTS,
+  WORK_EXPERIENCE,
   COURSE_NOTES,
   EMAIL,
   SOCIAL_LINKS,
@@ -73,6 +75,52 @@ export default function Personal() {
         initial="hidden"
         animate="visible"
       >
+        <motion.section
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <p className="text-zinc-600 dark:text-zinc-400">
+            MSc student in Cyber Security, a joint degree of EPFL and ETH
+            Zurich, after a BSc in Computer Science at EPFL. Looking for a
+            summer 2027 internship in security engineering or AI security.
+          </p>
+        </motion.section>
+
+        <motion.section
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-5 text-lg font-medium">Experience</h3>
+          <div className="flex flex-col space-y-2">
+            {WORK_EXPERIENCE.map((job) => (
+              <div
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+                key={job.id}
+              >
+                <Spotlight
+                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+                  <div className="relative flex w-full flex-row justify-between gap-4">
+                    <div>
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {job.title}
+                      </h4>
+                      <p className="text-zinc-500 dark:text-zinc-400">
+                        {job.company}
+                      </p>
+                    </div>
+                    <p className="shrink-0 text-zinc-600 dark:text-zinc-400">
+                      {job.start} - {job.end}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
         <ContentGrid
           title="Selected Projects"
           items={PROJECTS}
@@ -88,42 +136,6 @@ export default function Personal() {
           enablePreview={false}
           transition={TRANSITION_SECTION}
         />
-
-      {/*  <motion.section
-          variants={VARIANTS_SECTION}
-          transition={TRANSITION_SECTION}
-        >
-          <h3 className="mb-3 text-lg font-medium">Blog</h3>
-          <div className="flex flex-col space-y-0">
-            <AnimatedBackground
-              enableHover
-              className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-              transition={{
-                type: 'spring',
-                bounce: 0,
-                duration: 0.2,
-              }}
-            >
-              {BLOG_POSTS.map((post) => (
-                <Link
-                  key={post.uid}
-                  className="-mx-3 rounded-xl px-3 py-3"
-                  href={post.link}
-                  data-id={post.uid}
-                >
-                  <div className="flex flex-col space-y-1">
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {post.title}
-                    </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {post.description}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </AnimatedBackground>
-          </div>
-        </motion.section> */}
 
         <motion.section
           variants={VARIANTS_SECTION}
