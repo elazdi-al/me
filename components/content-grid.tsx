@@ -16,7 +16,7 @@ const ITEM_VARIANTS = {
   visible: { opacity: 1 },
 }
 
-const ITEM_TRANSITION = {
+const ITEM_TRANSITION: Transition = {
   duration: 0.35,
   ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
 }

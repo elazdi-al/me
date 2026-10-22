@@ -1,8 +1,7 @@
 'use client'
-import { motion } from 'motion/react'
+import { motion, type Transition } from 'motion/react'
 import { Magnetic } from '@/components/ui/magnetic'
 import { ContentGrid } from '@/components/content-grid'
-import { CommandMenu } from '@/components/ui/command-menu'
 import {
   PROJECTS,
   COURSE_NOTES,
@@ -26,7 +25,7 @@ const VARIANTS_SECTION = {
   visible: { opacity: 1 },
 }
 
-const TRANSITION_SECTION = {
+const TRANSITION_SECTION: Transition = {
   duration: 0.4,
   ease: [0.25, 0.1, 0.25, 1], // cubic-bezier easeOut
 }
@@ -147,8 +146,6 @@ export default function Personal() {
         </motion.section>
       </motion.main>
 
-      {/* Command Menu */}
-      <CommandMenu />
     </>
   )
 }
