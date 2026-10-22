@@ -1,41 +1,55 @@
-## Setup Instructions
+# elazdi.com
 
-### Environment Variables
+Personal site of Ali El Azdi. Next.js exports it as static files, and a Cloudflare Worker serves those files as static assets at https://elazdi.com. The site has no server code, API routes, or secrets.
 
-To enable the AI chat functionality with course PDFs, you need to set up a Google Generative AI API key:
+All page content is in `app/data.ts`.
 
-1. Get a free API key from [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Create a `.env.local` file in the root directory
-3. Add your API key:
+## Develop
 
-```bash
-GOOGLE_GENERATIVE_AI_API_KEY=your_google_api_key_here
+```sh
+bun install
+bun run dev
 ```
 
-⚠️ **Security Note**: The API key is now stored server-side only. Never use `NEXT_PUBLIC_` prefix for API keys as it exposes them publicly to all users.
+## Build
 
-### Features
+```sh
+bun run build
+```
 
-#### AI-Powered Course Chat
-- **Command Menu**: Press `⌘ K` to open the command interface
-- **Single Course Selection**: Type `@` followed by course name to select one course
-- **Smart Autocomplete**: AI suggests course names as you type
-- **PDF Processing**: Automatically downloads and processes course PDFs from GitHub
-- **Local Caching**: PDFs are cached locally using IndexedDB for faster subsequent access
-- **Secure API**: Server-side Google Gemini integration with secure API key handling
-- **Advanced PDF Processing**: Uses Google Gemini 2.5 Flash Preview for sophisticated PDF analysis
-- **Streaming Responses**: Real-time AI responses with visual feedback
+The build writes the static site to `out/`.
 
-#### How to Use
-1. Press `⌘ K` to open the command menu
-2. Type `@comp` and select "Computer Systems" from suggestions
-3. Type your question about the selected course
-4. Press Enter or click Send to get AI-powered answers
+## Preview
 
-**Note**: Only one course can be selected at a time for focused, accurate responses.
+```sh
+bun run preview
+```
 
-The system will:
-- Download PDFs directly from GitHub (client-side, no server costs)
-- Cache PDFs locally for future use
-- Send PDF content to Google Gemini 2.5 Flash Preview model
-- Stream back contextual answers based on your course materials with advanced multimodal understanding
+This builds the site and serves `out/` with `wrangler dev` at http://localhost:8787, with the same asset routing as production.
+
+## Deploy
+
+1. Log in with the Cloudflare account that owns the `elazdi.com` zone:
+
+   ```sh
+   bunx wrangler login
+   ```
+
+   Wrangler uses `CLOUDFLARE_API_TOKEN` before the login. If your shell exports a token for another account, unset it for these commands.
+
+2. Build and deploy:
+
+   ```sh
+   bun run deploy
+   ```
+
+   `wrangler.jsonc` deploys the Worker `elazdi` and attaches the custom domains `elazdi.com` and `www.elazdi.com`. Cloudflare creates the DNS records and certificates on the first deploy.
+
+3. Redirect `www` to the apex once. A Custom Domain matches one exact hostname, so the redirect is a zone rule, not Worker config. In the dashboard, open the `elazdi.com` zone, go to **Rules** > **Redirect Rules**, and create a rule from the **Redirect from WWW to root** template:
+
+   - Request URL: `https://www.*`
+   - Target URL: `https://${1}`
+   - Status code: 301
+   - Preserve query string: on
+
+   Until the rule exists, `www.elazdi.com` serves the same site as the apex.

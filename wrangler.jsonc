@@ -1,0 +1,15 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "elazdi",
+  "compatibility_date": "2026-10-22",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  },
+  // www.elazdi.com is attached so it gets a proxied DNS record and a
+  // certificate. A zone Redirect Rule sends it to the apex (see README).
+  "routes": [
+    { "pattern": "elazdi.com", "custom_domain": true },
+    { "pattern": "www.elazdi.com", "custom_domain": true }
+  ]
+}
